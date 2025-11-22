@@ -88,7 +88,7 @@ const MemberOnboardingPage = () => {
   ];
 
   return (
-    <div className="w-1/2 m-auto mt-10 ">
+    <div className="w-100 p-10 mt-10 ">
       <h1 className="text-3xl font-bold mb-4 text-center">Member Onboarding</h1>
 
       <div className="flex items-center justify-end">
