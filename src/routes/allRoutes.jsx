@@ -2,7 +2,7 @@ import LoginPage from "../pages/LoginPage";
 import MemberOnboardingPage from "../pages/MemberOnboardingPage";
 
 const allRoutes = [
-  {path: 'on-boarding', component: <MemberOnboardingPage />},
+  {path: 'members-boarding', component: <MemberOnboardingPage />},
   {path: 'login', component: <LoginPage />}
 ]
 

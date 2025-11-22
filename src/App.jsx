@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Navigate to="/members" />} />
+        <Route path="/" element={<Navigate to="/members-boarding" />} />
         {allRoutes.map((route, index) => {
           return <Route key={index} path={route.path} element={route.component} />
         })}
