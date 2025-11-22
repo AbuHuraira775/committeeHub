@@ -52,7 +52,7 @@ const MemberOnboardingPage = () => {
       localStorage.setItem("all-members", JSON.stringify(updatedAll));
 
       setOrdering(false); // stop loading
-    }, 3000);
+    }, 5000);
   };
 
   const columns = [
@@ -114,19 +114,19 @@ const MemberOnboardingPage = () => {
       )}
 
       {orderedMembers.length > 0 && (
+          <Spin spinning={ordering} size="large">
         <div className="mb-20">
           <h2 className="m-4 text-3xl text-center font-bold">Ordered Members</h2>
           {orderedMembers.length > 0 && (
 
-              <Spin spinning={ordering} size="large">
                 <Table
                   dataSource={orderedMembers}
                   columns={columns.slice(0, 4)}
                   rowKey="username"
                 />
-              </Spin>
-          )}
+              )}
         </div>
+              </Spin>
       )}
 
       <AddMemberModal
