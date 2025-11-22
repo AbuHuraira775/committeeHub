@@ -30,6 +30,7 @@ const AddMemberModal = ({ isOpen, closeModal, memberData, refresh }) => {
       message.success("Member saved successfully");
       refresh();
       closeModal();
+      form.resetFields();
     });
   };
 

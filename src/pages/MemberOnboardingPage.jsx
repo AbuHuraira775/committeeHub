@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Table, Button, Modal, Form, Input, message } from "antd";
+import { Table, Button, Modal, Form, Input, message, Spin } from "antd";
 import AddMemberModal from '../components/AddMemberModal';
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 
@@ -8,6 +8,7 @@ const MemberOnboardingPage = () => {
   const [allMembers, setAllMembers] = useState([]);
   const [orderedMembers, setOrderedMembers] = useState([]);
   const [selectedMember, setSelectedMember] = useState(null);
+  const [ordering, setOrdering] = useState(false);
 
   const refresh = () => {
     setAllMembers(JSON.parse(localStorage.getItem("all-members") || "[]"));
@@ -35,17 +36,23 @@ const MemberOnboardingPage = () => {
   const orderMember = () => {
     if (allMembers.length === 0) return;
 
-    const randomIndex = Math.floor(Math.random() * allMembers.length);
-    const selectedMember = allMembers[randomIndex];
+    setOrdering(true); // start loading
 
-    const updatedOrdered = [...orderedMembers, selectedMember];
-    const updatedAll = allMembers.filter((_, i) => i !== randomIndex);
+    setTimeout(() => {
+      const randomIndex = Math.floor(Math.random() * allMembers.length);
+      const selectedMember = allMembers[randomIndex];
 
-    setOrderedMembers(updatedOrdered);
-    setAllMembers(updatedAll);
+      const updatedOrdered = [...orderedMembers, selectedMember];
+      const updatedAll = allMembers.filter((_, i) => i !== randomIndex);
 
-    localStorage.setItem("ordered-member", JSON.stringify(updatedOrdered));
-    localStorage.setItem("all-members", JSON.stringify(updatedAll));
+      setOrderedMembers(updatedOrdered);
+      setAllMembers(updatedAll);
+
+      localStorage.setItem("ordered-member", JSON.stringify(updatedOrdered));
+      localStorage.setItem("all-members", JSON.stringify(updatedAll));
+
+      setOrdering(false); // stop loading
+    }, 3000);
   };
 
   const columns = [
@@ -82,17 +89,17 @@ const MemberOnboardingPage = () => {
 
   return (
     <div className="w-1/2 m-auto mt-10 ">
-      <h1 className="text-4xl font-bold mb-4 text-center">Member Onboarding</h1>
+      <h1 className="text-3xl font-bold mb-4 text-center">Member Onboarding</h1>
 
-    <div className="flex items-center justify-end">
+      <div className="flex items-center justify-end">
 
-      <Button type="primary" onClick={() => { setSelectedMember(null); setIsAddMemberModalOpen(true); }}>
-        Add Member +
-      </Button>
-      <Button style={{ marginLeft: 10 }} onClick={startProcess} danger>
-        Reset
-      </Button>
-    </div>
+        <Button type="primary" onClick={() => { setSelectedMember(null); setIsAddMemberModalOpen(true); }}>
+          Add Member +
+        </Button>
+        <Button style={{ marginLeft: 10 }} onClick={startProcess} danger>
+          Reset
+        </Button>
+      </div>
       <Table
         dataSource={allMembers}
         columns={columns}
@@ -108,12 +115,17 @@ const MemberOnboardingPage = () => {
 
       {orderedMembers.length > 0 && (
         <div className="mb-20">
-          <h2>Ordered Members</h2>
-          <Table
-            dataSource={orderedMembers}
-            columns={columns.slice(0, 4)}
-            rowKey="username"
-          />
+          <h2 className="m-4 text-3xl text-center font-bold">Ordered Members</h2>
+          {orderedMembers.length > 0 && (
+
+              <Spin spinning={ordering} size="large">
+                <Table
+                  dataSource={orderedMembers}
+                  columns={columns.slice(0, 4)}
+                  rowKey="username"
+                />
+              </Spin>
+          )}
         </div>
       )}
 
