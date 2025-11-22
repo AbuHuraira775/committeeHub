@@ -89,9 +89,9 @@ const MemberOnboardingPage = () => {
 
   return (
     <div className="w-100 p-10 mt-10 ">
-      <h1 className="text-3xl font-bold mb-4 text-center">Member Onboarding</h1>
+      <h1 className="text-3xl font-bold mb-4 ">Member Onboarding</h1>
 
-      <div className="flex items-center justify-end">
+      <div className="flex items-center ">
 
         <Button type="primary" onClick={() => { setSelectedMember(null); setIsAddMemberModalOpen(true); }}>
           Add Member +
@@ -108,25 +108,24 @@ const MemberOnboardingPage = () => {
       />
 
       {allMembers.length > 0 && (
-        <Button className="mb-20" type="primary" onClick={orderMember} style={{ marginTop: 20 }}>
+        <Button className="mb-5" type="primary" onClick={orderMember} style={{ marginTop: 20 }}>
           Order Members
         </Button>
       )}
 
       {orderedMembers.length > 0 && (
-          <Spin spinning={ordering} size="large">
-        <div className="mb-20">
-          <h2 className="m-4 text-3xl text-center font-bold">Ordered Members</h2>
-          {orderedMembers.length > 0 && (
-
-                <Table
-                  dataSource={orderedMembers}
-                  columns={columns.slice(0, 4)}
-                  rowKey="username"
-                />
-              )}
-        </div>
-              </Spin>
+        <Spin spinning={ordering} size="large">
+          <div className="mb-20"> 
+            <h2 className="m-4 text-3xl  font-bold">Ordered Members</h2>
+            {orderedMembers.length > 0 && (
+              <Table
+                dataSource={orderedMembers}
+                columns={columns.slice(0, 4)}
+                rowKey="username"
+              />
+            )}
+          </div>
+        </Spin>
       )}
 
       <AddMemberModal
