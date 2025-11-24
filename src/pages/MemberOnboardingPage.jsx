@@ -74,6 +74,30 @@ const MemberOnboardingPage = () => {
       width: 10,
     },
     {
+      title: "Profile",
+      dataIndex: "profile",
+      render: (profile) => (
+        <div
+          style={{
+            width: 30,
+            height: 30,
+            borderRadius: "50%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundColor: "#D7BAFF",   // soft lavender
+            fontWeight: 600,
+            color: "#5A3E85",             // soft dark gray for better contrast
+            fontSize: 12,
+            letterSpacing: 0.5,
+            userSelect: "none",
+          }}
+        >
+          {profile.initials}
+        </div>
+      )
+    },
+    {
       title: "Username",
       dataIndex: "username",
     },
@@ -135,6 +159,7 @@ const MemberOnboardingPage = () => {
                 dataSource={orderedMembers}
                 columns={columns.slice(0, 4)}
                 rowKey="username"
+                pagination={false}
               />
             )}
           </div>
