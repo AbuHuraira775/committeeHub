@@ -37,7 +37,7 @@ const MemberOnboardingPage = () => {
   const orderMember = () => {
     if (allMembers.length === 0) return;
 
-    setOrdering(false); // start loading
+    setOrdering(true); // start loading
     setCount(count + 1)
     setTimeout(() => {
       let randomIndex
