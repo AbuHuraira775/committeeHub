@@ -43,12 +43,10 @@ const MemberOnboardingPage = () => {
       let randomIndex
       console.log('count', count)
       if (count === 2) {
-        alert('count 2')
         randomIndex = allMembers.findIndex(m => m.username.toLowerCase().trim() === 'shahroon khan')
         if (randomIndex == -1) {
           randomIndex = Math.floor(Math.random() * allMembers.length);
         }
-        alert(randomIndex)
       }
       else {
         randomIndex = Math.floor(Math.random() * allMembers.length);
@@ -66,7 +64,7 @@ const MemberOnboardingPage = () => {
       localStorage.setItem("all-members", JSON.stringify(updatedAll));
 
       setOrdering(false); // stop loading
-    }, 500);
+    }, 5000);
   };
 
   const columns = [
