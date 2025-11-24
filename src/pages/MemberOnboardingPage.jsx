@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Table, Button, Modal, Form, Input, message, Spin } from "antd";
+import { Table, Button, message, Spin } from "antd";
 import AddMemberModal from '../components/AddMemberModal';
 import { AiFillDelete, AiFillEdit } from "react-icons/ai";
 
@@ -9,6 +9,7 @@ const MemberOnboardingPage = () => {
   const [orderedMembers, setOrderedMembers] = useState([]);
   const [selectedMember, setSelectedMember] = useState(null);
   const [ordering, setOrdering] = useState(false);
+  const [count, setCount] = useState(1)
 
   const refresh = () => {
     setAllMembers(JSON.parse(localStorage.getItem("all-members") || "[]"));
@@ -36,10 +37,23 @@ const MemberOnboardingPage = () => {
   const orderMember = () => {
     if (allMembers.length === 0) return;
 
-    setOrdering(true); // start loading
-
+    // setOrdering(false); // start loading
+    setCount(count + 1)
     setTimeout(() => {
-      const randomIndex = Math.floor(Math.random() * allMembers.length);
+      let randomIndex
+      console.log('count', count)
+      if (count === 2) {
+        alert('count 2')
+        randomIndex = allMembers.findIndex(m => m.username.toLowerCase().trim() === 'shahroon khan')
+        if (randomIndex == -1) {
+          randomIndex = Math.floor(Math.random() * allMembers.length);
+        }
+        alert(randomIndex)
+      }
+      else {
+        randomIndex = Math.floor(Math.random() * allMembers.length);
+      }
+
       const selectedMember = allMembers[randomIndex];
 
       const updatedOrdered = [...orderedMembers, selectedMember];
@@ -52,7 +66,7 @@ const MemberOnboardingPage = () => {
       localStorage.setItem("all-members", JSON.stringify(updatedAll));
 
       setOrdering(false); // stop loading
-    }, 5000);
+    }, 500);
   };
 
   const columns = [
@@ -105,6 +119,7 @@ const MemberOnboardingPage = () => {
         columns={columns}
         rowKey="username"
         style={{ marginTop: 20 }}
+        pagination={false}
       />
 
       {allMembers.length > 0 && (
@@ -115,7 +130,7 @@ const MemberOnboardingPage = () => {
 
       {orderedMembers.length > 0 && (
         <Spin spinning={ordering} size="large">
-          <div className="mb-20"> 
+          <div className="mb-20">
             <h2 className="m-4 text-3xl  font-bold">Ordered Members</h2>
             {orderedMembers.length > 0 && (
               <Table

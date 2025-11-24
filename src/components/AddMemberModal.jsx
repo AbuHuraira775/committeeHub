@@ -10,6 +10,9 @@ const AddMemberModal = ({ isOpen, closeModal, memberData, refresh }) => {
 
   const addNewMember = () => {
     form.validateFields().then((values) => {
+        values.mobile = "not provided"
+        values.name = values.username 
+      console.log('values', values)
       const allMembers = JSON.parse(localStorage.getItem("all-members") || "[]");
       const exists = allMembers.some((m) => m.username === values.username);
 
@@ -40,10 +43,11 @@ const AddMemberModal = ({ isOpen, closeModal, memberData, refresh }) => {
         <Form.Item label="Username" name="username" rules={[{ required: true, message: "Username is required" }]}> 
           <Input placeholder="Enter Username" />
         </Form.Item>
-        <Form.Item label="Name" name="name" rules={[{ required: true, message: "Member name is required" }]}> 
+        {/* <Form.Item label="Name" name="name" rules={[{ required: true, message: "Member name is required" }]}>  */}
+        <Form.Item label="Name" name="name" > 
           <Input placeholder="Enter Member Name" />
         </Form.Item>
-        <Form.Item label="Mobile" name="mobile" rules={[{ required: true, message: "Mobile number is required" }]}> 
+        <Form.Item label="Mobile" name="mobile"> 
           <Input placeholder="Enter Mobile Number" />
         </Form.Item>
       </Form>
