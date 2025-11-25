@@ -34,7 +34,7 @@ const AddMemberModal = ({ isOpen, closeModal, memberData, refresh }) => {
 
       // Generate avatar
       values.profile = generateAvatar(displayName);
-      values.name = values.username
+      // values.name = values.username
       console.log('values', values)
       const allMembers = JSON.parse(localStorage.getItem("all-members") || "[]");
       const exists = allMembers.some((m) => m.username === values.username);
@@ -61,15 +61,15 @@ const AddMemberModal = ({ isOpen, closeModal, memberData, refresh }) => {
   };
 
   return (
-    <Modal open={isOpen} onCancel={closeModal} onOk={addNewMember} title="Add / Edit Member">
+    <Modal open={isOpen} onCancel={closeModal} onOk={addNewMember} title="Add / Edit Member" okText="Add" cancelText='Discard' cancelButtonProps={{danger: true}} closable={{danger: true, }}>
       <Form layout="vertical" form={form}>
-        <Form.Item label="Username" name="username" rules={[{ required: true, message: "Username is required" }]}>
-          <Input placeholder="Enter Username" />
-        </Form.Item>
-        {/* <Form.Item label="Name" name="name" rules={[{ required: true, message: "Member name is required" }]}>  */}
         <Form.Item label="Name" name="name" >
           <Input placeholder="Enter Member Name" />
         </Form.Item>
+        <Form.Item label="Display Name" name="username" rules={[{ required: true, message: "Display name is required" }]}>
+          <Input placeholder="Enter Display Name" />
+        </Form.Item>
+        {/* <Form.Item label="Name" name="name" rules={[{ required: true, message: "Member name is required" }]}>  */}
         <Form.Item label="Mobile" name="mobile">
           <Input placeholder="Enter Mobile Number" />
         </Form.Item>

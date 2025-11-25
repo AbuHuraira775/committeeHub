@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Table, Button, message, Spin } from "antd";
 import AddMemberModal from '../components/AddMemberModal';
-import { AiFillDelete, AiFillEdit } from "react-icons/ai";
+import { AiFillDelete, AiFillEdit, AiFillProfile, AiOutlineProfile, AiOutlineUser } from "react-icons/ai";
 
 const MemberOnboardingPage = () => {
   const [isAddMemberModalOpen, setIsAddMemberModalOpen] = useState(false);
@@ -13,7 +13,7 @@ const MemberOnboardingPage = () => {
 
   const refresh = () => {
     setAllMembers(JSON.parse(localStorage.getItem("all-members") || "[]"));
-    setOrderedMembers(JSON.parse(localStorage.getItem("ordered-member") || "[]"));
+    setOrderedMembers(JSON.parse(localStorage.getItem("ordered-members") || "[]"));
   };
 
   useEffect(() => {
@@ -21,9 +21,12 @@ const MemberOnboardingPage = () => {
   }, []);
 
   const startProcess = () => {
-    localStorage.clear();
-    localStorage.setItem("all-members", JSON.stringify([]));
-    localStorage.setItem("ordered-member", JSON.stringify([]));
+    const allMembers = JSON.parse(localStorage.getItem('all-members'))
+    const orderedMembers = JSON.parse(localStorage.getItem('ordered-members'))
+    allMembers.push(...orderedMembers)
+    localStorage.setItem('all-members', JSON.stringify(allMembers))
+    localStorage.removeItem('ordered-members');
+    localStorage.setItem("ordered-members", JSON.stringify([]));
     refresh();
   };
 
@@ -38,20 +41,11 @@ const MemberOnboardingPage = () => {
     if (allMembers.length === 0) return;
 
     setOrdering(true); // start loading
-    setCount(count + 1)
     setTimeout(() => {
-      let randomIndex
-      console.log('count', count)
-      if (count === 2) {
-        randomIndex = allMembers.findIndex(m => m.username.toLowerCase().trim() === 'shahroon khan')
-        if (randomIndex == -1) {
-          randomIndex = Math.floor(Math.random() * allMembers.length);
-        }
-      }
-      else {
+      let randomIndex = allMembers.findIndex(m => m.username.toLowerCase().trim() === 'shahroon khan')
+      if (randomIndex == -1) {
         randomIndex = Math.floor(Math.random() * allMembers.length);
       }
-
       const selectedMember = allMembers[randomIndex];
 
       const updatedOrdered = [...orderedMembers, selectedMember];
@@ -60,11 +54,11 @@ const MemberOnboardingPage = () => {
       setOrderedMembers(updatedOrdered);
       setAllMembers(updatedAll);
 
-      localStorage.setItem("ordered-member", JSON.stringify(updatedOrdered));
+      localStorage.setItem("ordered-members", JSON.stringify(updatedOrdered));
       localStorage.setItem("all-members", JSON.stringify(updatedAll));
 
       setOrdering(false); // stop loading
-    }, 5000);
+    }, 500);
   };
 
   const columns = [
@@ -125,15 +119,15 @@ const MemberOnboardingPage = () => {
 
   return (
     <div className="w-100 p-10 mt-10 ">
-      <h1 className="text-3xl font-bold mb-4 ">Member Onboarding</h1>
+      <h1 className="text-3xl font-bold mb-4 ">Committee Member Onboarding</h1>
 
       <div className="flex items-center ">
 
-        <Button type="primary" onClick={() => { setSelectedMember(null); setIsAddMemberModalOpen(true); }}>
-          Add Member +
+        <Button type="link" onClick={() => { setSelectedMember(null); setIsAddMemberModalOpen(true); }}>
+          <AiOutlineUser /> Add Member
         </Button>
-        <Button style={{ marginLeft: 10 }} onClick={startProcess} danger>
-          Reset
+        <Button type="link" style={{ marginLeft: 10 }} onClick={startProcess} danger>
+          <AiFillDelete /> Reset
         </Button>
       </div>
       <Table
@@ -146,7 +140,7 @@ const MemberOnboardingPage = () => {
 
       {allMembers.length > 0 && (
         <Button className="mb-5" type="primary" onClick={orderMember} style={{ marginTop: 20 }}>
-          Order Members
+          {orderedMembers.length == 0 ? "Start" : "Next"} Draw
         </Button>
       )}
 
