@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom"
 
-const DefaultLayout = ()=>{
+const PublicLayout = ()=>{
     return (
         <div>
         <header>Default Header</header>
@@ -12,4 +12,4 @@ const DefaultLayout = ()=>{
     )
 }
 
-export default DefaultLayout
+export default PublicLayout
