@@ -1,10 +1,14 @@
+import { Outlet } from "react-router-dom"
+
 const DefaultLayout = ()=>{
     return (
         <div>
-            <ul>
-                <li>DefaultLayout</li>
-            </ul>
-        </div>
+        <header>Default Header</header>
+        <main>
+            <Outlet />
+        </main>
+        <footer>Default Footer</footer>
+    </div>
     )
 }
 

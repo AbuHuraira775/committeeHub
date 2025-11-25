@@ -35,13 +35,13 @@ function App() {
           </Route>
         </Route>
 
-        <Route element={<MemberAuth />}>
-          <Route path='/member' element={<MemberLayout />}>
-            {memberRoutes.map((route, ind) => {
-              return <Route key={ind} path={route.path} element={route.component} />
-            })}
+          <Route element={<MemberAuth />}>
+            <Route path='/member' element={<MemberLayout />}>
+              {memberRoutes.map((route, ind) => {
+                return <Route key={ind} path={route.path} element={route.component} />
+              })}
+            </Route>
           </Route>
-        </Route>
 
 
         {publicRoutes.map((route, ind) => {

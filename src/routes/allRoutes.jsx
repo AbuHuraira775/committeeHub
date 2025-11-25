@@ -8,7 +8,7 @@ const adminRoutes = [
 ]
 
 const memberRoutes = [
-  {path: 'dashboard', component: <MemberDashboard />}
+  {path: '', component: <MemberDashboard />}
 ]
 
 const publicRoutes = [

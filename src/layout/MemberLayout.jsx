@@ -1,14 +1,14 @@
 import React from 'react'
+import { Outlet } from 'react-router-dom'
 
-const MemberLayout = ()=>{
+const MemberLayout = () => {
     return (
         <div>
-            <ul>
-                <li>HOME</li>
-                <li>ABOUT</li>
-                <li>CREATE</li>
-                <li>MEMBER</li>
-            </ul>
+            <header>Member Header</header>
+            <main>
+                <Outlet />
+            </main>
+            <footer>Member Footer</footer>
         </div>
     )
 }

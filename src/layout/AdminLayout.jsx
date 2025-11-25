@@ -1,9 +1,13 @@
+import { Outlet } from "react-router-dom"
+
 const AdminLayout = ()=>{
     return (
         <div>
-            <ul>
-                <li>Admin</li>
-            </ul>
+            <header>Admin Header</header>
+            <main>
+                <Outlet />
+            </main>
+            <footer>Admin Footer</footer>
         </div>
     )
 }
