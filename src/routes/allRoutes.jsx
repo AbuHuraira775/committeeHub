@@ -1,4 +1,4 @@
-import AdminDashboard from "../pages/admin/adminDashboard";
+import AdminDashboard from "../pages/admin/AdminDashboard";
 import LoginPage from "../pages/public/LoginPage";
 import MemberOnboardingPage from "../pages/public/MemberOnboardingPage";
 import MemberDashboard from "../pages/members/MemberDashboard";
