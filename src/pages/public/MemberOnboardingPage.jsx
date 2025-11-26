@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Table, Button, message, Spin } from "antd";
-import AddMemberModal from '../components/AddMemberModal';
 import { AiFillDelete, AiFillEdit, AiFillProfile, AiOutlineProfile, AiOutlineUser } from "react-icons/ai";
+import AddMemberModal from "../../components/AddMemberModal";
 
 const MemberOnboardingPage = () => {
   const [isAddMemberModalOpen, setIsAddMemberModalOpen] = useState(false);
