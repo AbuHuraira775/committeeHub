@@ -130,19 +130,21 @@ const MemberOnboardingPage = () => {
           <AiFillDelete /> Reset
         </Button>
       </div>
-      <Table
-        dataSource={allMembers}
-        columns={columns}
-        rowKey="username"
-        style={{ marginTop: 20 }}
-        pagination={false}
-      />
-
-      {allMembers.length > 0 && (
+      {
+        allMembers.length > 0 &&
+        <>
+        <Table
+          dataSource={allMembers}
+          columns={columns}
+          rowKey="username"
+          style={{ marginTop: 20 }}
+          pagination={false}
+        />
         <Button className="mb-5" type="primary" onClick={orderMember} style={{ marginTop: 20 }}>
           {orderedMembers.length == 0 ? "Start" : "Next"} Draw
         </Button>
-      )}
+        </>
+      }
 
       {orderedMembers.length > 0 && (
         <Spin spinning={ordering} size="large">

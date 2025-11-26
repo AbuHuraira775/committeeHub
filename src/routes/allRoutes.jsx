@@ -31,8 +31,8 @@ const memberRoutes = [
 
 const publicRoutes = [
   { path: '/', element: <Home /> },
-  { path: '/auth-login', component: <LoginPage />},
-  { path: '/members-onboarding', component: <MemberOnboardingPage />},
+  { path: '/auth-login', element: <LoginPage />},
+  { path: '/members-onboarding', element: <MemberOnboardingPage />},
   { path: '/about', element: <About /> },
   { path: '/committees', element: <CommitteesList /> },
   { path: '/contact', element: <Contact /> }

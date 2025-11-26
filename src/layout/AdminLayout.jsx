@@ -7,7 +7,7 @@ const AdminLayout = ()=>{
             <main>
                 <Outlet />
             </main>
-            <footer>Admin Footer</footer>
+            {/* <footer>Admin Footer</footer> */}
         </div>
     )
 }

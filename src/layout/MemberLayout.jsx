@@ -8,7 +8,7 @@ const MemberLayout = () => {
             <main>
                 <Outlet />
             </main>
-            <footer>Member Footer</footer>
+            {/* <footer>Member Footer</footer> */}
         </div>
     )
 }
