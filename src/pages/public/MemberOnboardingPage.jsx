@@ -92,7 +92,7 @@ const MemberOnboardingPage = () => {
       )
     },
     {
-      title: "Username",
+      title: "Display Name",
       dataIndex: "username",
     },
     {
