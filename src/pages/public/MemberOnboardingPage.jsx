@@ -42,10 +42,10 @@ const MemberOnboardingPage = () => {
 
     setOrdering(true); // start loading
     setTimeout(() => {
-      let randomIndex = allMembers.findIndex(m => m.username.toLowerCase().trim() === 'shahroon khan')
-      if (randomIndex == -1) {
+      // let randomIndex = allMembers.findIndex(m => m.username.toLowerCase().trim() === 'shahroon khan')
+      // if (randomIndex == -1) {
         randomIndex = Math.floor(Math.random() * allMembers.length);
-      }
+      // }
       const selectedMember = allMembers[randomIndex];
 
       const updatedOrdered = [...orderedMembers, selectedMember];
