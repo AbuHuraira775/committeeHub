@@ -58,7 +58,7 @@ const MemberOnboardingPage = () => {
       localStorage.setItem("all-members", JSON.stringify(updatedAll));
 
       setOrdering(false); // stop loading
-    }, 500);
+    }, 5000);
   };
 
   const columns = [
