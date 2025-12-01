@@ -44,7 +44,7 @@ const MemberOnboardingPage = () => {
     setTimeout(() => {
       // let randomIndex = allMembers.findIndex(m => m.username.toLowerCase().trim() === 'shahroon khan')
       // if (randomIndex == -1) {
-        randomIndex = Math.floor(Math.random() * allMembers.length);
+        let randomIndex = Math.floor(Math.random() * allMembers.length);
       // }
       const selectedMember = allMembers[randomIndex];
 
@@ -140,7 +140,7 @@ const MemberOnboardingPage = () => {
           style={{ marginTop: 20 }}
           pagination={false}
         />
-        <Button className="mb-5" type="primary" onClick={orderMember} style={{ marginTop: 20 }}>
+        <Button className="mb-5" type="primary"  shape='round' onClick={orderMember} style={{ marginTop: 20 }}>
           {orderedMembers.length == 0 ? "Start" : "Next"} Draw
         </Button>
         </>
