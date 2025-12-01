@@ -7,8 +7,8 @@ const PublicLayout = () => {
     return (
         <div>
             <header>
-                <ul>
-                    <Link to='/members-onboarding'><Button variant="filled"  shape='round'>Onboard Members <AiOutlineArrowRight /></Button></Link>
+                <ul className="flex items-end justify-end mt-5 mr-5">
+                    <Link to='/members-onboarding'><Button type="primary"  shape='round'>Onboard Members <AiOutlineArrowRight /></Button></Link>
                     {/* <Link to='/auth-login' > {!user ? "Login" : user.name }</Link> */}
                 </ul>
             </header>
